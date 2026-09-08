@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-black: #111111;
+  --color-white: #FDFCFB;
+  --color-platinum: #E5E4E2;
+  --color-accent: #B58E5E;
+  --color-gold: #C59B63;
+  --color-navy: #081320;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   LIVING BACKGROUND SYSTEM KEYFRAMES & UTILITIES
+   ========================================================================== */
+
+/* 1. Ambient Lighting Drift */
+@keyframes ambientDrift {
+  0% {
+    transform: translate3d(-4%, -4%, 0) scale(1);
+    opacity: 0.12;
+  }
+  50% {
+    transform: translate3d(4%, 6%, 0) scale(1.18);
+    opacity: 0.22;
+  }
+  100% {
+    transform: translate3d(-2%, 3%, 0) scale(1.05);
+    opacity: 0.14;
+  }
+}
+
+/* 2. Soft Breathing Glow */
+@keyframes breathingGlow {
+  0% {
+    opacity: 0.08;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.20;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 0.10;
+    transform: scale(0.98);
+  }
+}
+
+/* 3. Floating Gold Particles Drift */
+@keyframes floatingParticles {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.03;
+  }
+  33% {
+    transform: translate3d(25px, -35px, 0);
+    opacity: 0.07;
+  }
+  66% {
+    transform: translate3d(-15px, -70px, 0);
+    opacity: 0.04;
+  }
+  100% {
+    transform: translate3d(10px, -110px, 0);
+    opacity: 0.02;
+  }
+}
+
+/* 4. World Map Light Sweep */
+@keyframes mapLightSweep {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.18;
+  }
+  60% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+}
+
+/* 5. Faint Grid Pulse */
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.04;
+  }
+  50% {
+    opacity: 0.09;
+  }
+}
+
+/* 6. Gold Network Line Illumination */
+@keyframes lineIlluminate {
+  0%, 100% {
+    opacity: 0.2;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    opacity: 0.55;
+    stroke-dashoffset: 100;
+  }
+}
+
+/* 7. Glass Shimmer Sweep */
+@keyframes glassShimmer {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.15;
+  }
+  80% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+/* Utility Animation Classes */
+.animate-ambient-drift {
+  will-change: transform, opacity;
+  animation: ambientDrift 32s ease-in-out infinite alternate;
+}
+
+.animate-ambient-drift-reverse {
+  will-change: transform, opacity;
+  animation: ambientDrift 38s ease-in-out infinite alternate-reverse;
+}
+
+.animate-breathing-glow {
+  will-change: transform, opacity;
+  animation: breathingGlow 15s ease-in-out infinite alternate;
+}
+
+.animate-floating-particles {
+  will-change: transform, opacity;
+  animation: floatingParticles 26s ease-in-out infinite;
+}
+
+.animate-floating-particles-slow {
+  will-change: transform, opacity;
+  animation: floatingParticles 34s ease-in-out infinite 5s;
+}
+
+.animate-map-sweep {
+  will-change: transform, opacity;
+  animation: mapLightSweep 32s ease-in-out infinite;
+}
+
+.animate-grid-pulse {
+  will-change: opacity;
+  animation: gridPulse 10s ease-in-out infinite;
+}
+
+.animate-line-illuminate {
+  will-change: opacity;
+  animation: lineIlluminate 14s ease-in-out infinite alternate;
+}
+
+.animate-glass-shimmer {
+  will-change: transform, opacity;
+  animation: glassShimmer 22s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-drift,
+  .animate-ambient-drift-reverse,
+  .animate-breathing-glow,
+  .animate-floating-particles,
+  .animate-floating-particles-slow,
+  .animate-map-sweep,
+  .animate-grid-pulse,
+  .animate-line-illuminate,
+  .animate-glass-shimmer {
+    animation: none !important;
+    transition: none !important;
+  }
+}
